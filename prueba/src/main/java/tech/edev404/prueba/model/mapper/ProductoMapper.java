@@ -10,14 +10,32 @@ public class ProductoMapper implements GenericMapper<Producto, ProductoDTO>{
 
     @Override
     public Producto dtoToPojo(ProductoDTO dto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dtoToPojo'");
+        Producto producto = Producto.builder()
+                                    .codigo(dto.getCodigo())
+                                    .nombre(dto.getNombre())
+                                    .valorCompra(dto.getValorCompra())
+                                    .valorVenta(dto.getValorVenta())
+                                    .disponible(dto.getDisponible())
+                                    .cantidad(dto.getCantidad())
+                                    .build();
+        if (dto.getId() != null) {
+            producto.setId(dto.getId());
+        }
+        return producto;
     }
 
     @Override
     public ProductoDTO pojoToDto(Producto pojo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pojoToDto'");
+        ProductoDTO productoDTO = ProductoDTO.builder()
+                                    .id(pojo.getId())
+                                    .codigo(pojo.getCodigo())
+                                    .nombre(pojo.getNombre())
+                                    .valorCompra(pojo.getValorCompra())
+                                    .valorVenta(pojo.getValorVenta())
+                                    .disponible(pojo.getDisponible())
+                                    .cantidad(pojo.getCantidad())
+                                    .build();
+        return productoDTO;
     }
     
 }
