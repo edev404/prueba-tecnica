@@ -12,7 +12,7 @@ import tech.edev404.prueba.configuration.security.model.entity.Token;
 public interface TokenRepository extends JpaRepository<Token, Integer> {
 
     @Query(value = """
-            select t from tokens t inner join user u\s
+            select t from Token t inner join user u\s
             on t.user.id = u.id\s
             where u.id = :id and (t.expired = false or t.revoked = false)\s
             """)
