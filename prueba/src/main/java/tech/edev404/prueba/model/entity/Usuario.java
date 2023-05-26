@@ -44,7 +44,7 @@ public class Usuario {
     @Column(length = 15)
     private String telefono;
 
-    @Column(length = 25, nullable = false)
+    @Column(length = 70, nullable = false)
     private String email;
 
     @Column(length = 250, nullable = false)

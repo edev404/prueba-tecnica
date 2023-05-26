@@ -55,10 +55,10 @@ public class UsuariosController {
 
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/registrar")
     public ResponseEntity<HttpStatus> handleCreateUsuario(@RequestBody NewUserRequest newUserRequest)
             throws EntityAlreadyOnStateException {
-        if (usuariosService.emailDisponible(newUserRequest.getEmail())) {
+        if (!usuariosService.emailDisponible(newUserRequest.getEmail())) {
             throw new EmailNotAvaliableException(String.format("Email no disponible"));
         }
         usuariosService.createNewUser(newUserRequest);

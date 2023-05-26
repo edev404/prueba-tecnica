@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import tech.edev404.prueba.configuration.security.model.dto.NewUserRequest;
+import tech.edev404.prueba.configuration.security.service.AuthenticationService;
 import tech.edev404.prueba.model.entity.Usuario;
 import tech.edev404.prueba.model.enums.AuthorityEnum;
 import tech.edev404.prueba.repository.UsuariosRepository;
@@ -23,6 +24,7 @@ public class UsuariosService {
 
     private final PasswordEncoder passwordEncoder;
     private final UsuariosRepository usuariosRepository;
+    private final AuthenticationService authenticationService;
 
     public boolean emailDisponible(String email) {
         Example<Usuario> example = Example.of(Usuario.builder().email(email).build());
@@ -39,11 +41,13 @@ public class UsuariosService {
                                 .enabled(true)
                                 .authority(AuthorityEnum.ROLE_SUPERVISOR)
                                 .build();
-        usuariosRepository.save(newUser);
+        Usuario saved = usuariosRepository.save(newUser);
+        authenticationService.registerNewUserToken(saved);
     }
 
     public void registerUser(Usuario usuario){
-        usuariosRepository.save(usuario);
+        Usuario saved = usuariosRepository.save(usuario);
+        authenticationService.registerNewUserToken(saved);
     }
 
     public Optional<Usuario> getUsuarioById(UUID idUsuario) {

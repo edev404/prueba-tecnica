@@ -12,6 +12,9 @@ public class UsuarioMapper implements GenericMapper<Usuario, UsuarioDTO>{
     @Override
     public Usuario dtoToPojo(UsuarioDTO dto) {
         Usuario usuario = Usuario.builder()
+                                .nombre(dto.getNombre())
+                                .apellido(dto.getApellido())
+                                .telefono(dto.getTelefono())
                                 .email(dto.getEmail())
                                 .password(dto.getPassword())
                                 .authority(AuthorityEnum.valueOf(dto.getAuthority()))
@@ -27,6 +30,9 @@ public class UsuarioMapper implements GenericMapper<Usuario, UsuarioDTO>{
     public UsuarioDTO pojoToDto(Usuario pojo) {
         UsuarioDTO usuarioDTO = UsuarioDTO.builder()
                                         .id(pojo.getId())
+                                        .nombre(pojo.getNombre())
+                                        .apellido(pojo.getApellido())
+                                        .telefono(pojo.getTelefono())
                                         .email(pojo.getEmail())
                                         .password("")
                                         .authority(pojo.getAuthority().toString())
