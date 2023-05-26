@@ -1,6 +1,15 @@
 # prueba-tecnica
 Prueba tecnica para posición como Java Developer
 
+# test
+Se debe autenticar en http://localhost:9090/api/v1/auth/login
+{
+    "username":"admininistrador@empresa.com",
+    "password":"administrador"
+}
+Se generará un token bearer quede debe ser pasado con el header Authorization
+Existen 2 roles, administrador y supervisor
+
 ## Los aspectos técnicos a tener en cuenta:
 
 1. Java versión 17 es requerido.
