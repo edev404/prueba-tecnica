@@ -50,8 +50,10 @@ public class ProductosController {
 
         final Pageable paging = PageRequest.of(page, size);
         final Page<Producto> pageProductos = productosService.getProductosPaginate(paging);
+        System.out.println(pageProductos);
         final Page<ProductoDTO> pageProductosDTO = new PageImpl<ProductoDTO>(
-                pageProductos.map(productoMapper::pojoToDto).toList());
+                pageProductos.stream().map(productoMapper::pojoToDto).toList());
+                System.out.println(pageProductosDTO);
         return ResponseEntity.status(HttpStatus.OK).body(pageProductosDTO);
 
     }
@@ -66,7 +68,7 @@ public class ProductosController {
                 .of(productoMapper.dtoToPojo(productoDTO));
         final Page<Producto> pageProductos = productosService.getProductosPaginateByExample(paging, example);
         final Page<ProductoDTO> pageProductosDTO = new PageImpl<ProductoDTO>(
-                pageProductos.map(productoMapper::pojoToDto).toList());
+                pageProductos.stream().map(productoMapper::pojoToDto).toList());
         return ResponseEntity.status(HttpStatus.OK).body(pageProductosDTO);
     }
 
