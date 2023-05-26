@@ -43,6 +43,7 @@ public class AuthenticationService {
     */
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws InvalidCredentialsException {
         Usuario usuario = userDetailsService.loadUsuarioByUsername(request.getUsername());
+        System.out.println("Estoy autenticando");
         if (passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
             revokeAllUserTokens(usuario);
             String jwtToken = jwtService.generateToken(userDetailsMapper.pojoToDto(usuario));

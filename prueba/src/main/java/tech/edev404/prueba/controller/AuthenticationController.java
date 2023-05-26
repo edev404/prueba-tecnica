@@ -22,7 +22,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/sign-in")
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) throws InvalidCredentialsException {
             final AuthenticationResponse response = authenticationService.authenticate(request);

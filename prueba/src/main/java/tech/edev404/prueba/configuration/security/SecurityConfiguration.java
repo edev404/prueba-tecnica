@@ -39,7 +39,7 @@ public class SecurityConfiguration {
 
                 .cors().configurationSource(new CorsConfigurationSource() {
                     /**
-                    Devuelve una configuración CORS personalizada que permite peticiones desde http://localhost:8072
+                    Devuelve una configuración CORS personalizada que permite peticiones desde cualquier lugar
                     con cualquier método, encabezado y credenciales, con una edad máxima de caché de 3600 segundos.
                     @param request El objeto HttpServletRequest.
                     @return La configuración CORS personalizada.
@@ -58,9 +58,11 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("api/v1/productos/**", "api/v1/usuarios/**").hasRole("ADMINISTRADOR")
-                .requestMatchers("api/v1/productos/**").hasRole("SUPERVISOR")
-                .requestMatchers("api/v1/auth/sign-in").permitAll()
+                .requestMatchers( "api/v1/usuarios/registrar", "api/v1/usuarios/paginate" , "api/v1/usuarios/updated/**").hasRole("ADMINISTRADOR")
+                .requestMatchers( "api/v1/productos/inhabilitar/**", "api/v1/productos/habilitar/**", "api/v1/productos/filtered"
+                                    , "api/v1/productos/codigo/**", "api/v1/productos/codigo-disponible", "api/v1/productos/update/**", 
+                                    "api/v1/productos/delete/**", "api/v1/productos/create**", "api/v1/productos/paginate").hasAnyRole("ADMINISTRADOR", "SUPERVISOR")
+                .requestMatchers("api/v1/auth/login").permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/api/v1/auth/logout").permitAll()
