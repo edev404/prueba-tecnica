@@ -19,12 +19,12 @@ public interface ProductosRepository extends JpaRepository<Producto, UUID> {
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE productos AS p SET p.habilitado = true WHERE p.id = :idProducto" , nativeQuery = true)
+    @Query(value="UPDATE productos p SET p.disponible = 1 WHERE p.id = :idProducto" , nativeQuery = true)
     void habilitarProductoById(UUID idProducto);
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE productos AS p SET p.habilitado = false WHERE p.id = :idProducto" , nativeQuery = true)
+    @Query(value="UPDATE productos p SET p.disponible = 0 WHERE p.id = :idProducto" , nativeQuery = true)
     void deshabilitarProductoById(UUID idProducto);
     
 }

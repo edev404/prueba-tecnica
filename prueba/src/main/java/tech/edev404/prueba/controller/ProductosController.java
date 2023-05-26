@@ -119,7 +119,7 @@ public class ProductosController {
     }
 
     @PatchMapping("/habilitar/{codigo}")
-    public ResponseEntity<HttpStatus> handleHabilitarProductoByCodigo(@PathVariable("id") String codigo)
+    public ResponseEntity<HttpStatus> handleHabilitarProductoByCodigo(@PathVariable("codigo") String codigo)
             throws EntityNotFoundException, EntityAlreadyOnStateException {
         Optional<Producto> optional = productosService.getProductoByCodigo(codigo);
         if (!optional.isPresent()) {
@@ -132,7 +132,7 @@ public class ProductosController {
     }
 
     @PatchMapping("/inhabilitar/{codigo}")
-    public ResponseEntity<HttpStatus> handleInhabilitarProductoByCodigo(@PathVariable("id") String codigo)
+    public ResponseEntity<HttpStatus> handleInhabilitarProductoByCodigo(@PathVariable("codigo") String codigo)
             throws EntityNotFoundException, EntityAlreadyOnStateException {
         Optional<Producto> optional = productosService.getProductoByCodigo(codigo);
         if (!optional.isPresent()) {
