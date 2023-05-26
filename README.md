@@ -2,7 +2,7 @@
 Prueba tecnica para posición como Java Developer
 
 # Test
-Se debe autenticar en http://localhost:9090/api/v1/auth/login
+Se debe autenticar en http://localhost:9090/api/v1/auth/login [POST]
 
 ```bash
     {
