@@ -1,7 +1,7 @@
 # prueba-tecnica
 Prueba tecnica para posición como Java Developer
 
-# test
+# Test
 Se debe autenticar en http://localhost:9090/api/v1/auth/login
 
 ```bash
