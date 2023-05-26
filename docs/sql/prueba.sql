@@ -1,14 +1,15 @@
 
-CREATE DATABASE sistema_inventario_bd;
+CREATE DATABASE inventarios_bd;
 
-USE sistema_inventario_bd;
+USE inventarios_bd;
 
+#NOTA: Los registros se deben crear desde la app, usa UUID generado por la app
 CREATE TABLE usuarios (
   id BINARY(16) NOT NULL,
   nombre VARCHAR(75) NOT NULL,
   apellido VARCHAR(75) NOT NULL,
   telefono VARCHAR(15),
-  email VARCHAR(25) NOT NULL,
+  email VARCHAR(75) NOT NULL,
   password VARCHAR(250) NOT NULL,
   authority VARCHAR(255) NOT NULL,
   enabled TINYINT(1) DEFAULT 1,
@@ -32,7 +33,7 @@ CREATE TABLE productos (
   UNIQUE INDEX productos_unique (codigo)
 );
 
-CREATE TABLE tokens (
+CREATE TABLE Token (
   id INT AUTO_INCREMENT NOT NULL,
   token VARCHAR(255) NOT NULL,
   tokenType VARCHAR(50) NOT NULL,
@@ -44,6 +45,7 @@ CREATE TABLE tokens (
   FOREIGN KEY (idUsuario) REFERENCES usuarios (id)
 );
 
+#NOTA: Los registros se deben crear desde la app, usa UUID generado por la app
 INSERT INTO productos (codigo, nombre, cantidad, valorCompra, valorVenta, disponible, fechaCreacion)
 VALUES 
     ('ABC123', 'Producto 1', 15, 50.25, 75.99, 1, NOW()),
